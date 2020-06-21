@@ -70,25 +70,13 @@ namespace WindowsFormsApp2
 
         }
         
-        
-            
-
-
-        
-        public void dodaj()
+         public void dodaj()
         {
             x[segmenty] = x[segmenty - 1];
             y[segmenty] = y[segmenty - 1];
             segmenty = segmenty + 1;
             
-            
-            
-            
-
-
-
-
-        }
+         }
         public bool czy_waz_zyje()
         {
             for (int i = 1; i < segmenty; i++)
