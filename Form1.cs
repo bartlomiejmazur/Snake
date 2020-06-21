@@ -15,76 +15,41 @@ namespace WindowsFormsApp2
         private bool czy_gra_aktywna;
         private Waz snake;
         private Owoc owoc;
-       
-
-        
         public Snake_W60140()
         {
             InitializeComponent();
             czy_gra_aktywna = false;
             timer1.Enabled = true;
             new Wynik();
-
-
-
-
-        }
+     }
 
         private void Snake_W60140_Load(object sender, EventArgs e)
         {
 
         }
-
-
-
-
-        private void Snake_W60140_AutoValidateChanged(object sender, EventArgs e)
+         private void Snake_W60140_AutoValidateChanged(object sender, EventArgs e)
         {
 
         }
-
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            
-            if (czy_gra_aktywna)
+         if (czy_gra_aktywna)
             {
-
-                
                 label2.Text = Wynik.Score.ToString();
                 pole_gry.CreateGraphics().Clear(Color.Black);
                 snake.move();
                 snake.rysuj(pole_gry.CreateGraphics(), new SolidBrush(Color.White));
                 owoc.rysuj_owoc(pole_gry.CreateGraphics(), new SolidBrush(Color.Green));
-                
                 if (owoc.czy_nowy_owoc(snake.x[0], snake.y[0]))
                 {
                     Wynik.Score += Wynik.Points;
-                    
                     snake.dodaj();
+                    label2.Text = Wynik.Score.ToString();
+                    }
 
-                 
-                        label2.Text = Wynik.Score.ToString();
-                    
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-                }
-
-                else if (snake.czy_waz_zyje() == false)
-                {
-                    
-                    FontFamily fontfamily1 = new FontFamily("Arial");
+                  else if (snake.czy_waz_zyje() == false)
+                  {
+                   FontFamily fontfamily1 = new FontFamily("Arial");
                     Font z = new Font(fontfamily1, 40);
                     Brush x = new SolidBrush(Color.Red);
                     Brush h = new SolidBrush(Color.Green);
@@ -92,14 +57,8 @@ namespace WindowsFormsApp2
                     pole_gry.CreateGraphics().Clear(Color.Black);
                     pole_gry.CreateGraphics().DrawString("Game Over", z, x, 90, 230);
                     pole_gry.CreateGraphics().DrawString("Score: "+ Wynik.Score.ToString(), z, h, 100, 330);
-                    new Wynik();
-
-
-
-
-
-
-                }
+                    new Wynik();   
+            }
             }
             else
             {
@@ -108,17 +67,10 @@ namespace WindowsFormsApp2
                 Font g = new Font(fontFamily1, 16);
                 Brush b = new SolidBrush(Color.White);
                 pole_gry.CreateGraphics().DrawString("Snake W60140", f, b, 50, 100);
-                
-                
-
-
-
-
-            }
+                 }
 
         }
-
-        private void startToolStripMenuItem_Click(object sender, EventArgs e)
+         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
             czy_gra_aktywna = true;
             if (czy_gra_aktywna)
@@ -126,20 +78,8 @@ namespace WindowsFormsApp2
                 pole_gry.CreateGraphics().Clear(Color.Black);
                 snake = new Waz(pole_gry.Width, pole_gry.Height);
                 owoc = new Owoc(snake.segment);
-                
-                
-                
-            }
-            else
-            {
-
-               /* FontFamily fontFamily1 = new FontFamily("Arial");
-                Font f = new Font(fontFamily1, 40);
-                Font g = new Font(fontFamily1, 18);
-                Brush b = new SolidBrush(Color.Aqua);
-                pole_gry.CreateGraphics().DrawString("Snake", f, b, 200, 100);
-                pole_gry.CreateGraphics().DrawString("Aby rozpocząć naciśnij START", g, b, 120, 230);*/
-            }
+              }
+           
         }
 
         private void Snake_W60140_KeyDown(object sender, KeyEventArgs e)
@@ -171,16 +111,6 @@ namespace WindowsFormsApp2
                 czy_gra_aktywna = true;
                 pauzaToolStripMenuItem.Text = "Pauza";
             }
-        }
-
-        private void wolniejToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            timer1.Interval += 100;
-        }
-
-        private void szybciejToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (timer1.Interval > 100) { timer1.Interval -= 100; }
         }
 
         private void label2_Click(object sender, EventArgs e)
